@@ -10,6 +10,7 @@
   <%= @point.y %>
 </p>
 
-
-<%= link_to 'Edit', edit_point_path(@point) %> |
+<%if signed_in?%>
+<%= link_to 'Edit', edit_point_path(@point) %>
+ |<%end%>
 <%= link_to 'Back', points_path %>

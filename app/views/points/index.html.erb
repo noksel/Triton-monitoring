@@ -26,12 +26,15 @@ $.plot($("#placeholder"), [ d4 ]);
     <td><%= point.y %></td>
 <td><%= point.triton_session_id %></td>
     <td><%= link_to 'Show', point %></td>
+<%if signed_in?%>
     <td><%= link_to 'Edit', edit_point_path(point) %></td>
     <td><%= link_to 'Destroy', point, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%end%>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<%if signed_in?%>
 <%= link_to 'New Point', new_point_path %>
+<%end%>

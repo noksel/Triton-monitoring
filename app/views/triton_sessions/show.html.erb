@@ -16,6 +16,7 @@ var d4=[<% @triton_session.points.each do |point| %>
 $.plot($("#placeholder"), [ d4 ]);
 });
 </script>
-
+<%if signed_in?%>
 <%= link_to 'Edit', edit_triton_session_path(@triton_session) %> |
+<%end%>
 <%= link_to 'Back', triton_sessions_path %>

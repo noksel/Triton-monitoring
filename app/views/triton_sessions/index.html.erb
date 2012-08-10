@@ -16,12 +16,15 @@ Year-Month-Day
 <td><%= triton_session.id %></td>
     <td><%= triton_session.dateStart %></td>
     <td><%= link_to 'Show', triton_session %></td>
+<%if signed_in?%>
     <td><%= link_to 'Edit', edit_triton_session_path(triton_session) %></td>
     <td><%= link_to 'Destroy', triton_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%end%>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<%if signed_in?%>
 <%= link_to 'New Triton session', new_triton_session_path %>
+<%end%>

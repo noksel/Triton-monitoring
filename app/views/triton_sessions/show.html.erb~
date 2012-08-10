@@ -5,7 +5,7 @@
 <b>Year Month Day</b></br>
   <%= @triton_session.dateStart %>
 </p>
-p=@triton_session.points
+
 <div id="placeholder" style="width:900px;height:550px;"></div>
 <script type="text/javascript">
 
