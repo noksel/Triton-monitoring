@@ -24,71 +24,84 @@ class PointsController < ApplicationController
   # GET /points/new
   # GET /points/new.json
   def new
-    @point = Point.new
-
+	 if (signed_in?)
+	  @point = Point.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @point }
     end
+	else
+redirect_to signin_path
+	 end
   end
 
   # GET /points/1/edit
   def edit
-    @point = Point.find(params[:id])
+		if(signed_in?)
+   	 @point = Point.find(params[:id])
+		else
+			redirect_to signin_path
+		end
   end
 
   # POST /points
   # POST /points.json
   def create
-    @point = Point.new(params[:point])
-
-    respond_to do |format|
+		if(signed_in?)
+   	 @point = Point.new(params[:point])
+   	 respond_to do |format|
       if @point.save
         format.html { redirect_to @point, notice: 'Point was successfully created.' }
         format.json { render json: @point, status: :created, location: @point }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @point.errors, status: :unprocessable_entity }
-      end
-    end
+     	 else
+       	 format.html { render action: "new" }
+       	 format.json { render json: @point.errors, status: :unprocessable_entity }
+      	end
+    	end
+		else
+		redirect_to signin_path
+		end
   end
 
   # PUT /points/1
   # PUT /points/1.json
   def update
-    @point = Point.find(params[:id])
-
-    respond_to do |format|
+		if(signed_in?)
+   	 @point = Point.find(params[:id])
+   	 respond_to do |format|
       if @point.update_attributes(params[:point])
         format.html { redirect_to @point, notice: 'Point was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @point.errors, status: :unprocessable_entity }
-      end
-    end
+     	 end
+    	end
+		else
+			redirect_to signin_path
+		end
   end
 
   # DELETE /points/1
   # DELETE /points/1.json
   def destroy
-    @point = Point.find(params[:id])
-    @point.destroy
-
-    respond_to do |format|
-      format.html { redirect_to points_url }
-      format.json { head :no_content }
-    end
+		if(signed_in?)
+    	@point = Point.find(params[:id])
+   		@point.destroy
+	    respond_to do |format|
+	      format.html { redirect_to points_url }
+	      format.json { head :no_content }
+	    end
+		else
+			redirect_to signin_path
+		end
   end
 # /last resive last Point
 	def last
 		@point=Point.last
-    
- respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @point }
-    end
-
-    
+    	respond_to do |format|
+    		format.html # show.html.erb
+     		format.json { render json: @point }
+    	end    
 	end
 end
