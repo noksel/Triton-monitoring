@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mfap</title>
+  <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/points.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/scaffolds.css?body=1" media="all" rel="stylesheet" type="text/css" />
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.flot.js?body=1" type="text/javascript"></script>
+<script src="/assets/points.js?body=1" type="text/javascript"></script>
+<script src="/assets/application.js?body=1" type="text/javascript"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="AXtKzkGTB5yO6UAkRYqdrYxueQiT+HyqQ+B0SAtn5Mk=" name="csrf-token" />
+</head>
+<body>
+
+<h1>New point</h1>
+
+<form accept-charset="UTF-8" action="/points" class="new_point" id="new_point" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="AXtKzkGTB5yO6UAkRYqdrYxueQiT+HyqQ+B0SAtn5Mk=" /></div>
+
+  <div class="field">
+    <label for="point_x">X</label><br />
+    <input id="point_x" name="point[x]" type="number" />
+  </div>
+  <div class="field">
+    <label for="point_y">Y</label><br />
+    <input id="point_y" name="point[y]" type="number" />
+  </div>
+  <div class="actions">
+    <input name="commit" type="submit" value="Create Point" />
+  </div>
+</form>
+
+<a href="/points">Back</a>
+
+
+</body>
+</html>

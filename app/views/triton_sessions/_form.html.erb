@@ -1,0 +1,21 @@
+<%= form_for(@triton_session) do |f| %>
+  <% if @triton_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@triton_session.errors.count, "error") %> prohibited this triton_session from being saved:</h2>
+
+      <ul>
+      <% @triton_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :dateStart %><br />
+    <%= f.date_select :dateStart %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

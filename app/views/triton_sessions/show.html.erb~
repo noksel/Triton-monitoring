@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Datestart:</b></br>
+<b>Year Month Day</b></br>
+  <%= @triton_session.dateStart %>
+</p>
+p=@triton_session.points
+<div id="placeholder" style="width:900px;height:550px;"></div>
+<script type="text/javascript">
+
+$(function () {
+
+var d4=[<% @triton_session.points.each do |point| %>
+[<%= point.x %>,<%= point.y %>],<% end %>];
+$.plot($("#placeholder"), [ d4 ]);
+});
+</script>
+
+<%= link_to 'Edit', edit_triton_session_path(@triton_session) %> |
+<%= link_to 'Back', triton_sessions_path %>

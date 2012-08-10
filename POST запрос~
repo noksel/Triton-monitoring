@@ -1,0 +1,13 @@
+POST http://localhost:3000/points HTTP/1.0
+Host: localhost:3000
+Referer: http://localhost:3000/points 
+Cookie: income=1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 134
+
+utf8=%E2%9C%93&authenticity_token=AXtKzkGTB5yO6UAkRYqdrYxueQiT%2BHyqQ%2BB0SAtn5Mk%3D&point%5Bx%5D=5&point%5By%5D=6&commit=Create+Point
+
+
+
+login=Petya%20Vasechkin&password=qq
+
