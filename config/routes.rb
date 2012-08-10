@@ -1,4 +1,12 @@
 Mfap::Application.routes.draw do
+	resources :users
+  
+
+ # get "pages/home"
+
+match '/signup', :to=> 'users#new'
+root :to => 'pages#home'
+
 match 'triton_sessions/last' => 'triton_sessions#last'
 resources :triton_sessions
 
