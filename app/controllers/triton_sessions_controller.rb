@@ -110,4 +110,10 @@ class TritonSessionsController < ApplicationController
 			format.json { redirect_to "/triton_sessions/"+TritonSession.last.id.to_s+".json"}
 		end
 	end
+	def current
+		respond_to do |format|
+			format.html { redirect_to TritonSession.last.points.last}
+			format.json { redirect_to "/points/"+TritonSession.last.points.last.id.to_s+".json"}
+		end
+	end 
 end

@@ -5,18 +5,37 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+ <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body>
- <ul>
-      <% if signed_in? %>
+
+<header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          
+          <nav>
+<%= link_to image_tag("logo.png", alt: "LCN"), 'http://cryolab.nntu.ru/' %>
+           
+ <ul class="nav pull-right">
+
+<li><%= link_to "Triton sessions", triton_sessions_path %></li>     
+ <% if signed_in? %>
       <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
       <% else %>
       <li><%= link_to "Sign in", signin_path %></li>
       <% end %>
-    </ul>
+ </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+ <div class="container">
 <%= yield %>
+</div>
 <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
+ <div class="flash <%= key %>"><%= value %></div>
  <% end %>
 <%= debug(params) if Rails.env.development? %>
 

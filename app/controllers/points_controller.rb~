@@ -48,6 +48,8 @@ redirect_to signin_path
   # POST /points.json
   def create
 		if(signed_in?)
+
+
    	 @point = Point.new(params[:point])
    	 respond_to do |format|
       if @point.save
@@ -99,12 +101,9 @@ redirect_to signin_path
 # /last resive last Point
 	def last
 		@point=Point.last
-    
- respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @point }
-    end
-
-    
+    	respond_to do |format|
+    		format.html # show.html.erb
+     		format.json { render json: @point }
+    	end    
 	end
 end

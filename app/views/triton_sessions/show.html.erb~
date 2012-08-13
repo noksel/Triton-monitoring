@@ -6,16 +6,35 @@
   <%= @triton_session.dateStart %>
 </p>
 
-<div id="placeholder" style="width:900px;height:550px;"></div>
+<div id="placeholder" style="width:900px;height:450px;"></div>
 <script type="text/javascript">
 
 $(function () {
 
-var d4=[<% @triton_session.points.each do |point| %>
-[<%= point.x %>,<%= point.y %>],<% end %>];
-$.plot($("#placeholder"), [ d4 ]);
+
+
+<%i=1%>
+<% Channel.all.each do |chan|%>
+var d<%=i%>=[
+
+<% @triton_session.points.each do |point| %>
+<%if (point.channel==chan)%>
+[<%=point.x%>,<%= point.y %>],
+<%end%>
+<% end %>];
+<%i=i+1%>
+<%end%>
+
+<%i=1%>
+$.plot($("#placeholder"), [ 
+<% Channel.all.each do |chan|%>
+d<%=i%>,
+<%i=i+1%>
+<%end%>
+ ]);
 });
 </script>
-
+<%if signed_in?%>
 <%= link_to 'Edit', edit_triton_session_path(@triton_session) %> |
+<%end%>
 <%= link_to 'Back', triton_sessions_path %>

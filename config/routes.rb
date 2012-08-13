@@ -1,6 +1,8 @@
 Mfap::Application.routes.draw do
  
 
+  resources :channels
+
 	resources :users
   
 
@@ -12,8 +14,9 @@ Mfap::Application.routes.draw do
   match '/signout', :to => 'sessions#destroy'
 
 
-root :to => 'pages#home'
+root :to => 'triton_sessions#last'
 match 'triton_sessions/last' => 'triton_sessions#last'
+match 'triton_sessions/:id/current'=>'triton_sessions#current'
 resources :triton_sessions
 match 'points/last' => 'points#last'
 resources :points

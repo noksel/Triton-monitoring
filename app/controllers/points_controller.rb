@@ -48,6 +48,8 @@ redirect_to signin_path
   # POST /points.json
   def create
 		if(signed_in?)
+
+
    	 @point = Point.new(params[:point])
    	 respond_to do |format|
       if @point.save

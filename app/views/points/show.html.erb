@@ -10,6 +10,10 @@
   <%= @point.y %>
 </p>
 
+<p>
+  <b>Cnannel ID:</b>
+  <%= @point.channel_id %>
+</p>
 <%if signed_in?%>
 <%= link_to 'Edit', edit_point_path(@point) %>
  |<%end%>

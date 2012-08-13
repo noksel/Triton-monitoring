@@ -1,8 +1,8 @@
-<h1>Listing triton_sessions</h1>
+<h1>Listing Triton sessions</h1>
 
 <table>
   <tr>
-<th>ID</th>
+
     <th>Datestart</br>
 Year-Month-Day
 </th>
@@ -14,8 +14,8 @@ Year-Month-Day
 <% @triton_sessions.each do |triton_session| %>
   <tr>
 <td><%= triton_session.id %></td>
-    <td><%= triton_session.dateStart %></td>
-    <td><%= link_to 'Show', triton_session %></td>
+  
+    <td><%= link_to triton_session.dateStart, triton_session %></td>
 <%if signed_in?%>
     <td><%= link_to 'Edit', edit_triton_session_path(triton_session) %></td>
     <td><%= link_to 'Destroy', triton_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>

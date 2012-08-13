@@ -15,6 +15,7 @@ $.plot($("#placeholder"), [ d4 ]);
     <th>X</th>
     <th>Y</th>
 		<th>Triton Session ID</th>
+		<th>Channel ID</th>
     <th></th>
     <th></th>
     <th></th>
@@ -24,7 +25,9 @@ $.plot($("#placeholder"), [ d4 ]);
   <tr>
     <td><%= point.x %></td>
     <td><%= point.y %></td>
+		
 <td><%= point.triton_session_id %></td>
+<td><%= point.channel_id%></td>
     <td><%= link_to 'Show', point %></td>
 <%if signed_in?%>
     <td><%= link_to 'Edit', edit_point_path(point) %></td>
