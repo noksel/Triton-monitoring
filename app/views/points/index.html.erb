@@ -1,15 +1,5 @@
 <h1>Listing points</h1>
 
-<div id="placeholder" style="width:900px;height:550px;"></div>
-<script type="text/javascript">
-$(function () {
-
-var d4=[<% @points.each do |point| %>
-[<%= point.x %>,<%= point.y %>],<% end %>];
-$.plot($("#placeholder"), [ d4 ]);
-});
-</script>
-
 <table>
   <tr>
     <th>X</th>

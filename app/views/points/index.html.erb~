@@ -1,14 +1,6 @@
 <h1>Listing points</h1>
 
-<div id="placeholder" style="width:900px;height:550px;"></div>
-<script type="text/javascript">
-$(function () {
 
-var d4=[<% @points.each do |point| %>
-[<%= point.x %>,<%= point.y %>],<% end %>];
-$.plot($("#placeholder"), [ d4 ]);
-});
-</script>
 
 <table>
   <tr>
@@ -27,7 +19,7 @@ $.plot($("#placeholder"), [ d4 ]);
     <td><%= point.y %></td>
 		
 <td><%= point.triton_session_id %></td>
-<td><%= point.channel_id></td>
+<td><%= point.channel_id%></td>
     <td><%= link_to 'Show', point %></td>
 <%if signed_in?%>
     <td><%= link_to 'Edit', edit_point_path(point) %></td>

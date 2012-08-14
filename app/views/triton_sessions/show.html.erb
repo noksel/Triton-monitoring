@@ -28,13 +28,10 @@ var d<%=i%>=[
 <%i=1%>
 $.plot($("#placeholder"), [ 
 <% Channel.all.each do |chan|%>
-d<%=i%>,
+{data: d<%=i%>,label: "<%=chan.channelName%>" },
 <%i=i+1%>
 <%end%>
- ],{ xaxis: {
-                mode: "time",
-               
-                max: (new Date(2012, 7, 13,14)).getTime()
+ ],{ xaxis: {   mode: "time"
 }
             });
 });

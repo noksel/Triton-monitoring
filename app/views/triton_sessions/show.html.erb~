@@ -19,7 +19,7 @@ var d<%=i%>=[
 
 <% @triton_session.points.each do |point| %>
 <%if (point.channel==chan)%>
-[<%=point.x%>,<%= point.y %>],
+[<%=point.created_at.utc.to_f*1000%>,<%= point.y %>],
 <%end%>
 <% end %>];
 <%i=i+1%>
@@ -28,10 +28,12 @@ var d<%=i%>=[
 <%i=1%>
 $.plot($("#placeholder"), [ 
 <% Channel.all.each do |chan|%>
-d<%=i%>,
+{data: d<%=i%>,label: <%=chan.channelName%> },
 <%i=i+1%>
 <%end%>
- ]);
+ ],{ xaxis: {   mode: "time"
+}
+            });
 });
 </script>
 <%if signed_in?%>
