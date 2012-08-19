@@ -20,7 +20,7 @@ var d<%=i%>=[];
 <% @triton_session.points.each do |point| %>
 <%if (point.channel==chan)%>
 <% #add 14400 ~ +4hours local time%>
-d<%=i%>.push([<%=(point.created_at.utc.to_f+14400)*1000%>,<%= point.y %>]);
+d<%=i%>.push([<%=(point.x.to_f*1000+14400000)%>,<%= point.y %>]);
 <%end%>
 <% end %>
 <%i=i+1%>
