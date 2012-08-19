@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120819135814) do
+ActiveRecord::Schema.define(:version => 20120819182031) do
 
   create_table "channels", :force => true do |t|
     t.string   "channelIdn"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20120819135814) do
   end
 
   create_table "points", :force => true do |t|
-    t.integer  "x"
-    t.integer  "y"
+    t.float    "x"
+    t.float    "y"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "triton_session_id"
