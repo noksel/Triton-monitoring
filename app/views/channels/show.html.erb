@@ -9,6 +9,10 @@
   <b>Chanelname:</b>
   <%= @channel.channelName %>
 </p>
+<p>
+  <b>Chanelname:</b>
+  <%= @channel.enabled %>
+</p>
 
 <%if signed_in?%>
 <%= link_to 'Edit', edit_channel_path(@channel) %> |<%end%>

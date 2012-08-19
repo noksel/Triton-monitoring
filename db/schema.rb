@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120813172646) do
+ActiveRecord::Schema.define(:version => 20120819135814) do
 
   create_table "channels", :force => true do |t|
     t.string   "channelIdn"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "channelName"
+    t.boolean  "enabled",     :default => true
   end
 
   create_table "points", :force => true do |t|

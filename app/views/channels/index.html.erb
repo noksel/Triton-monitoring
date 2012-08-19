@@ -4,6 +4,7 @@
   <tr>
     <th>Channelidn</th>
     <th>Chanelname</th>
+		<th>Enabled</th>
     <th></th>
    
     <th></th>
@@ -13,7 +14,8 @@
   <tr>
     <td><%=link_to channel.channelIdn, channel %></td>
     <td><%= link_to channel.channelName,channel%></td>
-    
+    <td> <%=check_box_tag("enabled","en",checked = channel.enabled) %></td>
+
 		<%if signed_in?%>
     <td><%= link_to 'Edit', edit_channel_path(channel) %></td>
     <td><%= link_to 'Destroy', channel, method: :delete, data: { confirm: 'Are you sure?' } %></td><%end%>

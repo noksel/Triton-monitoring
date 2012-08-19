@@ -19,7 +19,7 @@ var d<%=i%>=[];
 
 <% @triton_session.points.each do |point| %>
 <%if (point.channel==chan)%>
-<%#add 14400 ~ +4hours local time%>
+<% #add 14400 ~ +4hours local time%>
 d<%=i%>.push([<%=(point.created_at.utc.to_f+14400)*1000%>,<%= point.y %>]);
 <%end%>
 <% end %>
@@ -30,13 +30,15 @@ d<%=i%>.push([<%=(point.created_at.utc.to_f+14400)*1000%>,<%= point.y %>]);
  var placeholder = $("#placeholder");
 var plot = $.plot($("#placeholder"), [ 
 <% Channel.all.each do |chan|%>
+<%if chan.enabled %>
 {data: d<%=i%>,label: "<%=chan.channelName%>" },
+<%end%>
 <%i=i+1%>
 <%end%> ],
 {xaxis: { mode: 'time'},
 
 yaxis: {  },
- legend: { noColumns: 3 },
+ legend: { noColumns: 4 },
 zoom: {interactive: true},
 pan: {interactive: true}
 });
