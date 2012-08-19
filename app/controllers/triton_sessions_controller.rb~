@@ -17,7 +17,7 @@ class TritonSessionsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @triton_session }
+      format.json { render json: @triton_session.points }
     end
   end
 
@@ -113,7 +113,7 @@ class TritonSessionsController < ApplicationController
 	def current
 		respond_to do |format|
 			format.html { redirect_to TritonSession.last.points.last}
-			format.html { redirect_to "/points/"+TritonSession.last.points.last.id.to_s+".json"}
+			format.json { redirect_to "/points/"+TritonSession.last.points.last.id.to_s+".json"}
 		end
 	end 
 end

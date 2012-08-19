@@ -31,7 +31,7 @@ d<%=i%>.push([<%=(point.created_at.utc.to_f+14400)*1000%>,<%= point.y %>]);
 var plot = $.plot($("#placeholder"), [ 
 <% Channel.all.each do |chan|%>
 <%if chan.enabled %>
-{data: d<%=i%>,label: "<%=chan.channelName%>" },
+{data: d<%=i%>,label: "<%=chan.channelName%>: <%=Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last.y if Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last %> К" },
 <%end%>
 <%i=i+1%>
 <%end%> ],
