@@ -10,8 +10,8 @@
     <th></th>
     <th></th>
   </tr>
-<%@points.reverse!%>
-<% @points.each do |point| %>
+<%pnts=@points.reverse%>
+<% pnts.each do |point| %>
   <tr>
     <td><%= point.x %></td>
     <td><%= point.y %></td>
