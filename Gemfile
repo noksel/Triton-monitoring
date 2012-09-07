@@ -6,6 +6,7 @@ gem 'bootstrap-sass'
 group :production do
   # gems specifically for Heroku go here
   gem "pg"
+	gem 'thin'
 end
 group :development do
   gem 'sqlite3'
@@ -25,4 +26,4 @@ gem 'jquery-rails'
 
 gem 'execjs'
 gem 'therubyracer'
-gem 'thin'
+
