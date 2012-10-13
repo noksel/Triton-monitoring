@@ -1,5 +1,8 @@
 class TritonSessionsController < ApplicationController
-  # GET /triton_sessions
+  
+
+
+# GET /triton_sessions
   # GET /triton_sessions.json
   def index
     @triton_sessions = TritonSession.all
@@ -15,9 +18,30 @@ class TritonSessionsController < ApplicationController
   def show
     @triton_session = TritonSession.find(params[:id])
 
+d=[]
+d[0]={data:[],label:"PT2 Head: 2.97554 K"}
+d[1]={data:[],label:"PT2 Plate: 3.0437 K"}
+d[2]={data:[],label:"Still: 54.4021 K"}
+d[3]={data:[],label:"100mK Plate: 0.0828012 K"}
+d[4]={data:[],label:"MC cernox: 20.5599 K"}
+d[5]={data:[],label:"MC RuO2: 20.2879 K" }
+d[6]={data:[],label:"a" }
+d[7]={data:[],label:"b" }
+d[8]={data:[],label:"PT1 Head: 44.2498 K"}
+d[9]={data:[],label:"PT1 Plate: 51.0737 K"}
+
+@triton_session.points.sort_by(&:x).each do |point|
+	if point.channel.enabled
+
+		d[point.channel_id-1][:data].push([point.x.to_f*1000+14400000,point.y])
+	end
+end
+
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @triton_session }
+    # format.json { render json: @triton_session.points }
+
+			format.json { render json: d }
     end
   end
 

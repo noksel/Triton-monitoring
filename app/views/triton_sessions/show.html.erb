@@ -11,6 +11,27 @@
 
 $(function () {
 
+ var data = [];
+
+var plot =$.plot($("#placeholder"), data,
+{xaxis: { mode: 'time'},
+
+yaxis: {  },
+ legend: { noColumns: 3 },
+zoom: {interactive: true},
+pan: {interactive: true}
+});
+
+ function onDataReceived(series) {
+            
+               plot.setData(series);
+plot.setupGrid()
+ plot.draw();
+console.log(series);
+
+            }
+
+
 
 
 <%i=1%>
@@ -27,30 +48,24 @@ d<%=i%>.push([<%=(point.x.to_f*1000+14400000)%>,<%= point.y %>]);
 <%end%>
 
 <%i=1%>
- var placeholder = $("#placeholder");
-var plot = $.plot($("#placeholder"), [ 
-<% Channel.all.each do |chan|%>
-<%if chan.enabled %>
-{data: d<%=i%>,label: "<%=chan.channelName%>: <%=Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last.y if Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last %> К" },
-<%end%>
-<%i=i+1%>
-<%end%> ],
-{xaxis: { mode: 'time'},
-
-yaxis: {  },
- legend: { noColumns: 3 },
-zoom: {interactive: true},
-pan: {interactive: true}
-});
 
 
 
+function fetchData() {
+
+ $.ajax({
+            url: "/triton_sessions/<%=@triton_session.id%>",
+            method: 'GET',
+            dataType: 'json',
+            success: onDataReceived
+        });
 
 
+}
     // and add panning buttons
     
   
-
+setInterval(fetchData, 1000);
 
 });
 </script>
