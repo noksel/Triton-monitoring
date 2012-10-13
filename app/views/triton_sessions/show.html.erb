@@ -17,7 +17,7 @@ $(function () {
 <% Channel.all.each do |chan|%>
 var d<%=i%>=[];
 
-<% @triton_session.points.each do |point| %>
+<% @triton_session.points.sort_by(&:x).each do |point| %>
 <%if (point.channel==chan)%>
 <% #add 14400 ~ +4hours local time%>
 d<%=i%>.push([<%=(point.x.to_f*1000+14400000)%>,<%= point.y %>]);
