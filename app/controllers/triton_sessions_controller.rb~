@@ -18,20 +18,32 @@ class TritonSessionsController < ApplicationController
   def show
     @triton_session = TritonSession.find(params[:id])
 
-d={
-"PT2 Head: 2.97554 K"=>{data:[],label:"PT2 Head: 2.97554 K"},
-"PT2 Plate: 3.0437 K"=>{data:[],label:"PT2 Plate: 3.0437 K"},
-"Still: 54.4021 K"=>{data:[],label:"Still: 54.4021 K"},
-"100mK Plate: 0.0828012 K"=>{data:[],label:"100mK Plate: 0.0828012 K"},
-"MC cernox: 20.5599 K"=>{data:[],label:"MC cernox: 20.5599 K"},
-"MC RuO2: 20.2879 K"=>{data:[],label:"MC RuO2: 20.2879 K" },
-"PT1 Head: 44.2498 K"=>{data:[],label:"PT1 Head: 44.2498 K"},
-"PT1 Plate: 51.0737 K"=>{data:[],label:"PT1 Plate: 51.0737 K"}}
+arr={}
+
+Channel.all.each do |chan|
+if chan.enabled
+
+arr[chan.channelName] = {data:[],label:"#{chan.channelName}: #{Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last.y} K"}
+	end
+end
+
+
+d=[]
+d[0]={data:[],label:"PT2 Head: 2.97554 K"}
+d[1]={data:[],label:"PT2 Plate: 3.0437 K"}
+d[2]={data:[],label:"Still: 54.4021 K"}
+d[3]={data:[],label:"100mK Plate: 0.0828012 K"}
+d[4]={data:[],label:"MC cernox: 20.5599 K"}
+d[5]={data:[],label:"MC RuO2: 20.2879 K" }
+d[6]={data:[],label:"a" }
+d[7]={data:[],label:"b" }
+d[8]={data:[],label:"PT1 Head: 44.2498 K"}
+d[9]={data:[],label:"PT1 Plate: 51.0737 K"}
 
 @triton_session.points.sort_by(&:x).each do |point|
 	if point.channel.enabled
-
-	#	d[point.channel.channelName][:data].push([point.x.to_f*1000+14400000,point.y])
+		arr[point.channel.channelName][:data].push([point.x.to_f*1000+14400000,point.y])
+		#d[point.channel_id-1][:data].push([point.x.to_f*1000+14400000,point.y])
 	end
 end
 
@@ -39,7 +51,7 @@ end
       format.html # show.html.erb
     # format.json { render json: @triton_session.points }
 
-			format.json { render json: d }
+			format.json { render json: arr }
     end
   end
 
