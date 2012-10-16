@@ -25,6 +25,7 @@ pan: {interactive: true}
  function onDataReceived(series) {
             
                plot.setData(series);
+plot.setupGrid()
  plot.draw();
 console.log(series);
 
