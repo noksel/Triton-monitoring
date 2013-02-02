@@ -23,7 +23,7 @@ arr={}
 Channel.all.each do |chan|
 if chan.enabled
 
-arr[chan.channelName] = {data:[],label:"#{chan.channelName}: #{Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last.y} K"}
+arr[chan.channelName] = {data:[],label:"#{chan.channelName}: #{(Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last) ? Point.where('triton_session_id=? AND channel_id=?',@triton_session.id,chan.id).last.y : 'NaN'} K"}
 	end
 end
 
